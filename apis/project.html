@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project &mdash; Open Source Verification Bundle latest documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/osvb.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pyVHDLModelUtils" href="project/pyVHDLModelUtils.html" />
+    <link rel="prev" title="Core" href="core.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html">
+            <img src="../_static/osvb_banner_white.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/frameworks.html">Frameworks and Methodologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/sim.html">Simulators | Compilers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/cosim.html">Co-simulation</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://edaa-org.github.io/ConceptualModel.html">EDA² Conceptual Model ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="core.html">Core</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="project/pyVHDLModelUtils.html">pyVHDLModelUtils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project/OSVDE.html">Open Source VHDL Design Explorer (OSVDE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project/DocGen.html">Documentation generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tool.html">Tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="runner.html">Runner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../egs/sff.html">Simple Flip-Flop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../egs/axi4stream.html">SISO AXI4 Stream</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notebook</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/fpconv.html">Fixed-point conversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/sigrok.html">sigrok-cli | Pulseview</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Open Source Verification Bundle</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+        
+          
+            <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Project</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/umarcor/osvb/blob/main/doc/apis/project.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="project">
+<span id="api-project"></span><h1>Project<a class="headerlink" href="#project" title="Permalink to this headline">¶</a></h1>
+<p>This section covers the definition of an API for binding the sources and options from the <a class="reference internal" href="core.html#api-core"><span class="std std-ref">Core</span></a> to the
+interfaces in <a class="reference internal" href="tool.html#api-tool"><span class="std std-ref">Tool</span></a>, <a class="reference internal" href="runner.html#api-runner"><span class="std std-ref">Runner</span></a> and <a class="reference internal" href="logging.html#api-logging"><span class="std std-ref">Logging</span></a>.
+The Project and Design management API handles tools independent information (files/filesets, primary design units,
+testbenches, constraints, etc.) and some tool specific parameters.</p>
+<ul class="simple">
+<li><p>Project: a set of sources (HDL, software, data, assets, configuration files, etc.) for handling multiple designs.</p></li>
+<li><p>Design: a design unit, the dependencies, the parent units (testbenches and BoardTop) and the parameters for execution.</p></li>
+</ul>
+<p>This is probably the most complex piece, because it is the less constrained.
+Interaction with tools and manipulation of file formats are technically limited by the interfaces and capabilities in
+those.
+Therefore, although there is flexibility in the implementation of <a class="reference internal" href="core.html#api-core"><span class="std std-ref">Core</span></a>, <a class="reference internal" href="tool.html#api-tool"><span class="std std-ref">Tool</span></a>,
+<a class="reference internal" href="runner.html#api-runner"><span class="std std-ref">Runner</span></a> and <a class="reference internal" href="logging.html#api-logging"><span class="std std-ref">Logging</span></a>, all of them need to match some external resource.
+Conversely, defining what a project is and how to handle it tends to be specific for each use case (say organisation,
+company, open source project…), so there is a vast space of different workflows, all similar but particular enough.
+Therefore, the elaboration of the API in this section is delayed until others are defined, since that will allow working
+on a finite scope.</p>
+<p>Nevertheless, there are some features available already for dealing with “whole repositories” of VHDL sources.
+The proofs of concept below showcase pyGHDL.dom, the Python Document Object Model (DOM) interface built on top of GHDL’s
+parsing capabilities.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Proofs of concept</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="project/pyVHDLModelUtils.html">pyVHDLModelUtils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="project/pyVHDLModelUtils.html#pyvhdlmodel">pyVHDLModel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project/pyVHDLModelUtils.html#utils">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project/pyVHDLModelUtils.html#pyvhdlmodelutils-reference">pyVHDLModelUtils reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="project/pyVHDLModelUtils.html#resolve">resolve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="project/pyVHDLModelUtils.html#fmt">fmt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="project/pyVHDLModelUtils.html#sphinx">sphinx</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="project/OSVDE.html">Open Source VHDL Design Explorer (OSVDE)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="project/OSVDE.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project/OSVDE.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project/OSVDE.html#future-work">Future work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project/OSVDE.html#osvde-reference">OSVDE reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="project/DocGen.html">Documentation generation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="project/DocGen.html#integration-with-sphinx">Integration with Sphinx</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="project/DocGen.html#exec-directive"><em>exec</em> directive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="project/DocGen.html#lists-and-tables">Lists and tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="project/DocGen.html#vhdl-domain">VHDL Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="project/DocGen.html#diagrams">Diagrams</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.google.com/document/d/1qThGGqSVQabts-4imn5zY5BMptp1-Q2rGiNKHDH1Pbk/">EDA integration: managing projects for simulation and implementation</a></p></li>
+<li><p>Registers:</p>
+<ul>
+<li><p><a class="reference external" href="https://tsfpga.com/registers.html">tsfpga: Register code generation</a></p></li>
+<li><p><a class="reference external" href="https://gitlab.cern.ch/cohtdrivers/cheby">cheby</a></p></li>
+<li><p><a class="reference external" href="https://github.com/SystemRDL">SystemRDL register description language</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rggen/rggen">RgGen</a></p></li>
+<li><p><a class="reference external" href="https://github.com/wzab/agwb">wzab/agwb</a></p></li>
+<li><p><a class="reference external" href="https://airhdl.com">airhdl</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://github.com/dbhi/vsc-hdl">dbhi/vsc-hdl</a></p></li>
+<li><p><a class="reference external" href="https://github.com/orestesmas/pycirkuit">orestesmas/pycirkuit</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="core.html" class="btn btn-neutral float-left" title="Core" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="project/pyVHDLModelUtils.html" class="btn btn-neutral float-right" title="pyVHDLModelUtils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Unai Martinez-Corral and contributors.</p>
+  </div>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/buildthedocs/sphinx.theme">theme</a>
+    provided by <a href="https://buildthedocs.github.io">Build the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

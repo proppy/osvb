@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open Source VHDL Design Explorer (OSVDE) &mdash; Open Source Verification Bundle latest documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/osvb.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Documentation generation" href="DocGen.html" />
+    <link rel="prev" title="pyVHDLModelUtils" href="pyVHDLModelUtils.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html">
+            <img src="../../_static/osvb_banner_white.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/frameworks.html">Frameworks and Methodologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/sim.html">Simulators | Compilers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/cosim.html">Co-simulation</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://edaa-org.github.io/ConceptualModel.html">EDA² Conceptual Model ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../core.html">Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../project.html">Project</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pyVHDLModelUtils.html">pyVHDLModelUtils</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Open Source VHDL Design Explorer (OSVDE)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#future-work">Future work</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#osvde-reference">OSVDE reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DocGen.html">Documentation generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../project.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tool.html">Tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../runner.html">Runner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logging.html">Logging</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../egs/sff.html">Simple Flip-Flop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../egs/axi4stream.html">SISO AXI4 Stream</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notebook</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../notebook/fpconv.html">Fixed-point conversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notebook/sigrok.html">sigrok-cli | Pulseview</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Open Source Verification Bundle</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+        
+          
+            <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../project.html">Project</a> &raquo;</li>
+      <li>Open Source VHDL Design Explorer (OSVDE)</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/umarcor/osvb/blob/main/doc/apis/project/OSVDE.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="open-source-vhdl-design-explorer-osvde">
+<span id="api-project-osvde"></span><h1>Open Source VHDL Design Explorer (OSVDE)<a class="headerlink" href="#open-source-vhdl-design-explorer-osvde" title="Permalink to this headline">¶</a></h1>
+<p>OSVDE is GUI for hardware designers to understand and use projects/repositories.
+It allows exploring the HDL sources, entities/hierarchies, testbenches, tasks, etc.
+It is mostly meant for VHDL designers (but not only) and particularly for users of VHDL &gt;= 2008.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>OSVDE is a proof of concept for prototyping the integration of multiple pieces in the OSVB.
+It is not actively developed <em>per se</em>, but used as an umbrella for pyVHDLModel, pyGHDL, pyCAPI, etc.
+A practical usage of the features prototyped in OSVDE is found in <a class="reference external" href="https://github.com/umarcor/hwstudio">Hardware Studio</a>
+(see <a class="reference external" href="https://umarcor.github.io/hwstudio/doc/#_structure">umarcor.github.io/hwstudio/doc: Structure</a>).</p>
+</div>
+<p>OSVDE is a GUI tool written in Python only, using <a class="reference external" href="https://docs.python.org/3/library/tkinter.html">tkinter</a>,
+<em>the standard Python interface to the Tk GUI toolkit</em> (see <a class="reference external" href="https://docs.python.org/3/faq/gui.html" title="(in Python v3.10)"><span>Graphic User Interface FAQ</span></a>).
+The motivation for using both Python and tkinter is reducing the dependencies to the bare minimum available on several
+plataforms.
+As said, the purpose of OSVDE is not to provide the best performance for (very) large designs, but it’s for prototyping
+the integration of other pieces such as pyCAPI, pydoit and OSVR.</p>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Install a recent version of GHDL and a matching pyGHDL.
+As explained in <a class="reference external" href="https://ghdl.github.io/ghdl/quick_start/python/index.html#using-quickstart-python" title="(in GHDL v2.0)"><span>Python Interfaces</span></a>, the following pip command can be used:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pip3 install git+https://github.com/ghdl/ghdl.git@$(ghdl version hash)
+</pre></div>
+</div>
+<p>Alternatively, get a tarball/zipfile of the GHDL repository, extract it, and set <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> accordingly.</p>
+<p>Then, retrieve this repository (OSVB) and install the dependencies of pyOSVDE:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">mods</span><span class="o">/</span><span class="n">pyOSVDE</span><span class="o">/</span><span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>Start OSVDE by executing <code class="docutils literal notranslate"><span class="pre">PYTHONPATH=$(pwd)/mods</span> <span class="pre">./mods/pyOSVDE/main.py</span></code>.
+By default, the ‘<em>Open Directory…</em>’ is triggered, asking the user to select a directory containing VHDL sources.
+Upon selection, the whole directory is scanned recursively, searching for either <code class="docutils literal notranslate"><span class="pre">*.vhd*</span></code> or <code class="docutils literal notranslate"><span class="pre">.osvdeignore</span></code> files,
+and all the VHDL sources are added to pyVHDLModel <a class="reference external" href="https://vhdl.github.io/pyVHDLModel/LanguageModel/Miscellaneous.html#vhdlmodel-design" title="(in pyVHDLModel v0.14)"><span>Design</span></a> as a <a class="reference external" href="https://vhdl.github.io/pyVHDLModel/LanguageModel/Miscellaneous.html#vhdlmodel-document" title="(in pyVHDLModel v0.14)"><span>Document</span></a>
+of a <a class="reference external" href="https://vhdl.github.io/pyVHDLModel/LanguageModel/Miscellaneous.html#vhdlmodel-library" title="(in pyVHDLModel v0.14)"><span>LibraryClause</span></a>.
+Then, the Design model is used for generating the content of the GUI.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Ignore files use the same syntax as regular <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> files, and prevent OSVDE from processing some content.
+In fact, <a class="reference external" href="https://pypi.org/project/gitignore-parser/">gitignore-parser</a> is used for parsing <code class="docutils literal notranslate"><span class="pre">.osvdeignore</span></code> files.</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Currently, pyGHDL may crash (produce a segmentation fault) if “too many” files are analysed at the same time.
+That is actually a bug, because GHDL itself can handle the same sources for simulation and/or synthesis.
+While the bug is being fixed, it is recommended to use <code class="docutils literal notranslate"><span class="pre">.osvdeignore</span></code> files for testing OSVDE with a limited number
+of sources.</p>
+</div>
+<figure class="align-center" id="id1">
+<span id="fig-osvde"></span><a class="reference internal image-reference" href="../../_images/osvde.png"><img alt="Repository NEORV32 opened in OSVDE" src="../../_images/osvde.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Repository <a class="reference external" href="https://github.com/stnolting/neorv32">stnolting/neorv32</a> opened in OSVDE.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>As shown in <a class="reference internal" href="#fig-osvde"><span class="std std-numref">Fig. 3</span></a>, at the top part of OSVDE the hierarchy of the source files is shown.
+For each VHDL source, a column shows the units (entities and/or architectures) defined in it.
+As a complement, at the bottom part the logical hierarchy of the units is shown, grouped by library.
+For each entity, the generics and ports are shown, including the <em>name</em>, <em>type</em> and (for ports only) <em>mode</em>.
+Architectures are shown too, and within them concurrent statements such as instantiations and generates.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>For now, <code class="docutils literal notranslate"><span class="pre">*.vhd*</span></code> files are scanned only, and all of them are analysed into library <code class="docutils literal notranslate"><span class="pre">lib</span></code>.
+That is because the definition of the Filesets and the Project is out of the scope of OSVDE.
+As discussed above, pyCAPI and the project API are to be reused in OSVDE for that purpose.</p>
+</div>
+</section>
+<section id="future-work">
+<h2>Future work<a class="headerlink" href="#future-work" title="Permalink to this headline">¶</a></h2>
+<p>Some enhancements and features we would like to integrate into OSVDE are the following:</p>
+<ul class="simple">
+<li><p>Dependency tree and logic hierarchy elaboration through GHDL.</p></li>
+<li><p>Task running/triggering:</p>
+<ul>
+<li><p>Discovery of VUnit run scripts (see
+<a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=teros-technology.teroshdl">VSCode TerosHDL</a>,
+<a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=hbohlin.vunit-test-explorer">VSCode VUnit Test Explorer</a>,
+<a class="reference external" href="https://www.sigasi.com/products/">Sigasi Studio XPRT</a>).</p></li>
+<li><p>Discovery of pydoit task definition files (see <a class="reference internal" href="../tool.html#api-tool"><span class="std std-ref">Tool</span></a>).</p>
+<ul>
+<li><p>Allow running tasks and showing the results in a window.</p></li>
+</ul>
+</li>
+<li><p>‘<em>Edit source in editor</em>’ or ‘<em>Open project in editor</em>’, where IDE is VSCode, (neo)vim, emacs, notepad++…</p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="DocGen.html#api-project-docgen"><span class="std std-ref">Documentation generation</span></a>.</p></li>
+<li><p>Pretty printing, formatting…</p>
+<ul>
+<li><p>Fixed style (see GHDL’s <a class="reference external" href="https://ghdl.github.io/ghdl/using/CommandReference.html#ref-command" title="(in GHDL v2.0)"><span class="xref std std-ref">–pp-html</span></a> and <a class="reference external" href="https://github.com/ghdl/ghdl/blob/master/pyGHDL/cli/dom.py">ghdl-dom</a>).</p></li>
+<li><p>Customisable style (see
+<a class="reference external" href="https://github.com/jeremiah-c-leary/vhdl-style-guide">vhdl-style-guide</a>,
+<a class="reference external" href="https://github.com/VHDLTool">VHDLTool</a>).</p></li>
+<li><p><a class="reference external" href="https://github.com/AdiuvoEngineering/VHDL_Coding_Rules">AdiuvoEngineering/VHDL_Coding_Rules</a>.</p></li>
+</ul>
+</li>
+<li><p>pyVHDLModel/pyGHDL enhancements:</p>
+<ul>
+<li><p>Preserve comments.</p></li>
+<li><p>Preserve identifier casing.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="osvde-reference">
+<h2>OSVDE reference<a class="headerlink" href="#osvde-reference" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyOSVDE.main.OSVDE">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyOSVDE.main.</span></span><span class="sig-name descname"><span class="pre">OSVDE</span></span><a class="reference internal" href="../../_modules/pyOSVDE/main.html#OSVDE"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyOSVDE.main.OSVDE" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="pyOSVDE.main.OSVDE.cbDir">
+<span class="sig-name descname"><span class="pre">cbDir</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyOSVDE/main.html#OSVDE.cbDir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyOSVDE.main.OSVDE.cbDir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Callback for ‘<em>Open Directory…</em>’.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyOSVDE.main.OSVDE.cbFile">
+<span class="sig-name descname"><span class="pre">cbFile</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyOSVDE/main.html#OSVDE.cbFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyOSVDE.main.OSVDE.cbFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Callback for ‘<em>Open File…</em>’.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyOSVDE.main.OSVDE.loadDesignTree">
+<span class="sig-name descname"><span class="pre">loadDesignTree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyOSVDE/main.html#OSVDE.loadDesignTree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyOSVDE.main.OSVDE.loadDesignTree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Populate the DesignTreeView with the data from the pyVHDLModel Design.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyOSVDE.main.OSVDE.loadFileTree">
+<span class="sig-name descname"><span class="pre">loadFileTree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyOSVDE/main.html#OSVDE.loadFileTree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyOSVDE.main.OSVDE.loadFileTree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Populate the FileTreeView with the data from the pyVHDLModel Design.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyOSVDE.main.OSVDE.parseDir">
+<span class="sig-name descname"><span class="pre">parseDir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dirName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.10)"><span class="pre">pathlib.Path</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyOSVDE/main.html#OSVDE.parseDir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyOSVDE.main.OSVDE.parseDir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse all the <code class="docutils literal notranslate"><span class="pre">.vhd</span></code> files found through a recursive glob, honoring <code class="docutils literal notranslate"><span class="pre">osvdeignore</span></code> files.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyOSVDE.main.OSVDE.parseFile">
+<span class="sig-name descname"><span class="pre">parseFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sourceFile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.10)"><span class="pre">pathlib.Path</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">library</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'lib'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyOSVDE/main.html#OSVDE.parseFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyOSVDE.main.OSVDE.parseFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a VHDL source to the pyVHDLModel Design.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pyVHDLModelUtils.html" class="btn btn-neutral float-left" title="pyVHDLModelUtils" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="DocGen.html" class="btn btn-neutral float-right" title="Documentation generation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Unai Martinez-Corral and contributors.</p>
+  </div>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/buildthedocs/sphinx.theme">theme</a>
+    provided by <a href="https://buildthedocs.github.io">Build the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

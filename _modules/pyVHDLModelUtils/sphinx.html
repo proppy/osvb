@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyVHDLModelUtils.sphinx &mdash; Open Source Verification Bundle latest documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/osvb.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html">
+            <img src="../../_static/osvb_banner_white.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/frameworks.html">Frameworks and Methodologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/sim.html">Simulators | Compilers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/cosim.html">Co-simulation</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://edaa-org.github.io/ConceptualModel.html">EDA² Conceptual Model ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../apis/core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apis/project.html">Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apis/tool.html">Tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apis/runner.html">Runner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apis/logging.html">Logging</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../egs/sff.html">Simple Flip-Flop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../egs/axi4stream.html">SISO AXI4 Stream</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notebook</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../notebook/fpconv.html">Fixed-point conversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notebook/sigrok.html">sigrok-cli | Pulseview</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Open Source Verification Bundle</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+        
+          
+            <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>pyVHDLModelUtils.sphinx</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pyVHDLModelUtils.sphinx</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">textwrap</span> <span class="kn">import</span> <span class="n">indent</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">redirect_stdout</span>
+<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
+
+<span class="kn">from</span> <span class="nn">pyGHDL.dom.NonStandard</span> <span class="kn">import</span> <span class="n">Design</span><span class="p">,</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Library</span>
+<span class="kn">from</span> <span class="nn">pyGHDL.dom.DesignUnit</span> <span class="kn">import</span> <span class="n">Entity</span>
+
+<span class="kn">from</span> <span class="nn">pyVHDLModelUtils.resolve</span> <span class="kn">import</span> <span class="n">Symbols</span> <span class="k">as</span> <span class="n">resolve_Symbols</span>
+<span class="kn">from</span> <span class="nn">pyVHDLModelUtils.fmt</span> <span class="kn">import</span> <span class="n">SubtypeIndication</span> <span class="k">as</span> <span class="n">format_SubtypeIndication</span>
+
+
+<span class="n">DESIGN</span> <span class="o">=</span> <span class="n">Design</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="initDesign"><a class="viewcode-back" href="../../apis/project/pyVHDLModelUtils.html#pyVHDLModelUtils.sphinx.initDesign">[docs]</a><span class="k">def</span> <span class="nf">initDesign</span><span class="p">(</span><span class="n">root</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initialize a Design and analyze sources.</span>
+
+<span class="sd">    Each argument after `root` defines a library name and the type is expected to be a list of patterns.</span>
+
+<span class="sd">    :param root: Location of the root for all provided relative paths. This is relative to the base directory of the build.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">root</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;.. NOTE:: Output of initDesign:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">library</span><span class="p">,</span> <span class="n">patterns</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">lib</span> <span class="o">=</span> <span class="n">DESIGN</span><span class="o">.</span><span class="n">GetLibrary</span><span class="p">(</span><span class="n">library</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  * </span><span class="si">{0}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">library</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">patterns</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">pattern</span><span class="p">):</span>
+                <span class="c1"># FIXME: is_relative_to is new in Python 3.9 (see https://docs.python.org/3/library/pathlib.html#pathlib.PurePath.is_relative_to)</span>
+                <span class="c1"># Therefore, we use try..except for backwards compatibility.</span>
+                <span class="c1"># print(&quot;    * {0}\n&quot;.format(item.relative_to(root) if item.is_relative_to(root) else item))</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">path</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+                <span class="k">except</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">path</span> <span class="o">=</span> <span class="n">item</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    * </span><span class="si">{0}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+                <span class="n">f</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
+                <span class="k">with</span> <span class="n">redirect_stdout</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+                    <span class="n">DESIGN</span><span class="o">.</span><span class="n">AddDocument</span><span class="p">(</span><span class="n">Document</span><span class="p">(</span><span class="n">item</span><span class="p">),</span> <span class="n">lib</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">indent</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">getvalue</span><span class="p">(),</span> <span class="s2">&quot;      * &quot;</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">resolve_Symbols</span><span class="p">(</span><span class="n">DESIGN</span><span class="p">)</span></div>
+
+
+<span class="n">STYLES</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;rst:list&quot;</span><span class="p">,</span> <span class="s2">&quot;rst:table&quot;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="printDocumentationOfEntity_rstList"><a class="viewcode-back" href="../../apis/project/pyVHDLModelUtils.html#pyVHDLModelUtils.sphinx.printDocumentationOfEntity_rstList">[docs]</a><span class="k">def</span> <span class="nf">printDocumentationOfEntity_rstList</span><span class="p">(</span><span class="n">entity</span><span class="p">:</span> <span class="n">Entity</span><span class="p">,</span> <span class="n">lib</span><span class="p">:</span> <span class="n">Library</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Print documentation of an Entity using style &#39;rst:list&#39;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Entity *</span><span class="si">{0}</span><span class="s2">* from Library *</span><span class="si">{1}</span><span class="s2">*:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">entity</span><span class="o">.</span><span class="n">Identifier</span><span class="p">,</span> <span class="n">lib</span><span class="o">.</span><span class="n">Identifier</span><span class="p">))</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;* Generics:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">generic</span> <span class="ow">in</span> <span class="n">entity</span><span class="o">.</span><span class="n">GenericItems</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;   * *</span><span class="si">{0}</span><span class="s2">* : ``</span><span class="si">{1}</span><span class="s2">``</span><span class="si">{2}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">generic</span><span class="o">.</span><span class="n">Identifiers</span><span class="p">),</span>
+                <span class="n">format_SubtypeIndication</span><span class="p">(</span><span class="n">generic</span><span class="o">.</span><span class="n">Subtype</span><span class="p">),</span>
+                <span class="s2">&quot;&quot;</span> <span class="k">if</span> <span class="n">generic</span><span class="o">.</span><span class="n">DefaultExpression</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot; := ``</span><span class="si">{0!s}</span><span class="s2">``&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">generic</span><span class="o">.</span><span class="n">DefaultExpression</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">* Ports:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">port</span> <span class="ow">in</span> <span class="n">entity</span><span class="o">.</span><span class="n">PortItems</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;   * *</span><span class="si">{0}</span><span class="s2">* : </span><span class="si">{1}</span><span class="s2"> ``</span><span class="si">{2}</span><span class="s2">``</span><span class="si">{3}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">port</span><span class="o">.</span><span class="n">Identifiers</span><span class="p">),</span>
+                <span class="n">port</span><span class="o">.</span><span class="n">Mode</span><span class="p">,</span>
+                <span class="n">format_SubtypeIndication</span><span class="p">(</span><span class="n">port</span><span class="o">.</span><span class="n">Subtype</span><span class="p">),</span>
+                <span class="s2">&quot;&quot;</span> <span class="k">if</span> <span class="n">port</span><span class="o">.</span><span class="n">DefaultExpression</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot; := ``</span><span class="si">{0!s}</span><span class="s2">``&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">port</span><span class="o">.</span><span class="n">DefaultExpression</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">* Architectures:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">architecture</span> <span class="ow">in</span> <span class="n">entity</span><span class="o">.</span><span class="n">Architectures</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  * *</span><span class="si">{0}</span><span class="s2">*&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">architecture</span><span class="o">.</span><span class="n">Identifier</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="printDocumentationOfEntity_rstTable"><a class="viewcode-back" href="../../apis/project/pyVHDLModelUtils.html#pyVHDLModelUtils.sphinx.printDocumentationOfEntity_rstTable">[docs]</a><span class="k">def</span> <span class="nf">printDocumentationOfEntity_rstTable</span><span class="p">(</span><span class="n">entity</span><span class="p">:</span> <span class="n">Entity</span><span class="p">,</span> <span class="n">lib</span><span class="p">:</span> <span class="n">Library</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Print documentation of an Entity using style &#39;rst:table&#39; (through &#39;tabulate&#39;).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">printTable</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">caption</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">tabulate</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;rst&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">headers</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">tabulate</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;rst&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">caption</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;.. table:: </span><span class="si">{0}</span><span class="se">\n</span><span class="s2">  :align: center</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">caption</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">indent</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="s2">&quot;  &quot;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{0}{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;&quot;</span> <span class="k">if</span> <span class="n">lib</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">Identifier</span><span class="p">),</span> <span class="n">entity</span><span class="o">.</span><span class="n">Identifier</span><span class="p">)</span>
+
+    <span class="n">printTable</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">[</span>
+                <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">generic</span><span class="o">.</span><span class="n">Identifiers</span><span class="p">),</span>
+                <span class="s2">&quot;``</span><span class="si">{0}</span><span class="s2">``&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">format_SubtypeIndication</span><span class="p">(</span><span class="n">generic</span><span class="o">.</span><span class="n">Subtype</span><span class="p">)),</span>
+                <span class="s2">&quot;&quot;</span> <span class="k">if</span> <span class="n">generic</span><span class="o">.</span><span class="n">DefaultExpression</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;``</span><span class="si">{0!s}</span><span class="s2">``&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">generic</span><span class="o">.</span><span class="n">DefaultExpression</span><span class="p">),</span>
+            <span class="p">]</span>
+            <span class="k">for</span> <span class="n">generic</span> <span class="ow">in</span> <span class="n">entity</span><span class="o">.</span><span class="n">GenericItems</span>
+        <span class="p">],</span>
+        <span class="n">headers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Identifiers&quot;</span><span class="p">,</span> <span class="s2">&quot;Type&quot;</span><span class="p">,</span> <span class="s2">&quot;Default&quot;</span><span class="p">],</span>
+        <span class="n">caption</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> Generics&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="n">printTable</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">[</span>
+                <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">port</span><span class="o">.</span><span class="n">Identifiers</span><span class="p">),</span>
+                <span class="n">port</span><span class="o">.</span><span class="n">Mode</span><span class="p">,</span>
+                <span class="s2">&quot;``</span><span class="si">{0}</span><span class="s2">``&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">format_SubtypeIndication</span><span class="p">(</span><span class="n">port</span><span class="o">.</span><span class="n">Subtype</span><span class="p">)),</span>
+                <span class="s2">&quot;&quot;</span> <span class="k">if</span> <span class="n">port</span><span class="o">.</span><span class="n">DefaultExpression</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;``</span><span class="si">{0!s}</span><span class="s2">``&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">port</span><span class="o">.</span><span class="n">DefaultExpression</span><span class="p">),</span>
+            <span class="p">]</span>
+            <span class="k">for</span> <span class="n">port</span> <span class="ow">in</span> <span class="n">entity</span><span class="o">.</span><span class="n">PortItems</span>
+        <span class="p">],</span>
+        <span class="n">headers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Identifiers&quot;</span><span class="p">,</span> <span class="s2">&quot;Mode&quot;</span><span class="p">,</span> <span class="s2">&quot;Type&quot;</span><span class="p">,</span> <span class="s2">&quot;Default&quot;</span><span class="p">],</span>
+        <span class="n">caption</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> Ports&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="n">printTable</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">[</span>
+                <span class="n">architecture</span><span class="o">.</span><span class="n">Identifier</span><span class="p">,</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">architecture</span><span class="o">.</span><span class="n">Statements</span><span class="p">),</span>
+            <span class="p">]</span>
+            <span class="k">for</span> <span class="n">architecture</span> <span class="ow">in</span> <span class="n">entity</span><span class="o">.</span><span class="n">Architectures</span>
+        <span class="p">],</span>
+        <span class="n">headers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Identifier&quot;</span><span class="p">,</span> <span class="s2">&quot;Number of statements&quot;</span><span class="p">],</span>
+        <span class="n">caption</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> Architectures&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">),</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="printDocumentationOf"><a class="viewcode-back" href="../../apis/project/pyVHDLModelUtils.html#pyVHDLModelUtils.sphinx.printDocumentationOf">[docs]</a><span class="k">def</span> <span class="nf">printDocumentationOf</span><span class="p">(</span><span class="n">targets</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">style</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;rst:list&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate documentation of resources (either a unit or a whole file).</span>
+
+<span class="sd">    Supported syntaxes:</span>
+
+<span class="sd">    * libraryName.entityName</span>
+<span class="sd">    * TODO: libraryName.entityName(architectureName)</span>
+<span class="sd">    * TODO: libraryName.packageName</span>
+<span class="sd">    * TODO: libraryName.configurationName</span>
+<span class="sd">    * TODO: libraryName.architectureName</span>
+<span class="sd">    * TODO: relative/path/to/file</span>
+<span class="sd">    * TODO: absolute/path/to/file</span>
+
+<span class="sd">    :param targets: list of resources to generate the documentation for.</span>
+<span class="sd">    :param style: format of the output. Supported values are: &#39;rst:list&#39; and &#39;rst:table&#39;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">targets</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Design content:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">libName</span><span class="p">,</span> <span class="n">lib</span> <span class="ow">in</span> <span class="n">DESIGN</span><span class="o">.</span><span class="n">Libraries</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">ents</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">Entities</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;* Library *</span><span class="si">{0}</span><span class="s2">* [</span><span class="si">{1}</span><span class="s2"> entities]</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">libName</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ents</span><span class="p">)))</span>
+            <span class="k">for</span> <span class="n">ent</span> <span class="ow">in</span> <span class="n">ents</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  * Entity: *</span><span class="si">{0}</span><span class="s2">*</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ent</span><span class="o">.</span><span class="n">Identifier</span><span class="p">))</span>
+                <span class="k">for</span> <span class="n">arch</span> <span class="ow">in</span> <span class="n">ent</span><span class="o">.</span><span class="n">Architectures</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    * Architecture: *</span><span class="si">{0}</span><span class="s2">*</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arch</span><span class="o">.</span><span class="n">Identifier</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+    <span class="k">if</span> <span class="n">style</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">STYLES</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Unknown style &lt;</span><span class="si">{0}</span><span class="s2">&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">style</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">targets</span><span class="p">:</span>
+        <span class="c1"># TODO: support other argument types:</span>
+        <span class="c1"># - libName.packageName</span>
+        <span class="c1"># - path/to/file (print all the units in the file)</span>
+        <span class="n">parts</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+        <span class="n">libName</span><span class="p">,</span> <span class="n">entityName</span> <span class="o">=</span> <span class="n">parts</span>
+        <span class="n">lib</span> <span class="o">=</span> <span class="n">DESIGN</span><span class="o">.</span><span class="n">GetLibrary</span><span class="p">(</span><span class="n">libName</span><span class="p">)</span>
+        <span class="n">entity</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">entity</span> <span class="ow">in</span> <span class="n">lib</span><span class="o">.</span><span class="n">Entities</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">entity</span><span class="o">.</span><span class="n">Identifier</span> <span class="o">==</span> <span class="n">entityName</span><span class="p">:</span>
+                <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Entity </span><span class="si">{0}</span><span class="s2"> not found in library </span><span class="si">{1}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">entityName</span><span class="p">,</span> <span class="n">libraryName</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">style</span> <span class="o">==</span> <span class="s2">&quot;rst:list&quot;</span><span class="p">:</span>
+            <span class="n">printDocumentationOfEntity_rstList</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">lib</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="n">style</span> <span class="o">==</span> <span class="s2">&quot;rst:table&quot;</span><span class="p">:</span>
+            <span class="n">printDocumentationOfEntity_rstTable</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">lib</span><span class="p">)</span>
+            <span class="k">continue</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Unai Martinez-Corral and contributors.</p>
+  </div>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/buildthedocs/sphinx.theme">theme</a>
+    provided by <a href="https://buildthedocs.github.io">Build the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

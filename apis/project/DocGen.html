@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentation generation &mdash; Open Source Verification Bundle latest documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/osvb.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Tool" href="../tool.html" />
+    <link rel="prev" title="Open Source VHDL Design Explorer (OSVDE)" href="OSVDE.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html">
+            <img src="../../_static/osvb_banner_white.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/frameworks.html">Frameworks and Methodologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/sim.html">Simulators | Compilers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/cosim.html">Co-simulation</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://edaa-org.github.io/ConceptualModel.html">EDA² Conceptual Model ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../core.html">Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../project.html">Project</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pyVHDLModelUtils.html">pyVHDLModelUtils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OSVDE.html">Open Source VHDL Design Explorer (OSVDE)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Documentation generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#integration-with-sphinx">Integration with Sphinx</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#exec-directive"><em>exec</em> directive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lists-and-tables">Lists and tables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vhdl-domain">VHDL Domain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diagrams">Diagrams</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../project.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tool.html">Tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../runner.html">Runner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logging.html">Logging</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../egs/sff.html">Simple Flip-Flop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../egs/axi4stream.html">SISO AXI4 Stream</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notebook</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../notebook/fpconv.html">Fixed-point conversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notebook/sigrok.html">sigrok-cli | Pulseview</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Open Source Verification Bundle</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+        
+          
+            <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../project.html">Project</a> &raquo;</li>
+      <li>Documentation generation</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/umarcor/osvb/blob/main/doc/apis/project/DocGen.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="documentation-generation">
+<span id="api-project-docgen"></span><h1>Documentation generation<a class="headerlink" href="#documentation-generation" title="Permalink to this headline">¶</a></h1>
+<p>Automatic documentation generation of hardware designs is one of the main purposes of having a machine-readable project
+description format along with a library providing a Document Object Model (DOM).
+Some of the features to be implemented on top of <a class="reference internal" href="pyVHDLModelUtils.html#api-project-pyvhdlmodelutils"><span class="std std-ref">pyVHDLModelUtils</span></a> are the following:</p>
+<ul class="simple">
+<li><p>Entity symbol:</p>
+<ul>
+<li><p><a class="reference external" href="https://kevinpt.github.io/symbolator/">Symbolator</a></p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/hdl/symbolator">hdl/symbolator</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hdl/pyHDLParser">hdl/pyHDLParser</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://hackfin.gitlab.io/xhdl/">xhdl</a></p></li>
+<li><p><a class="reference external" href="https://github.com/LaurentCabaret/pyVhdl2Sch">LaurentCabaret/pyVhdl2Sch</a></p></li>
+</ul>
+</li>
+<li><p>Single page HTML/reStructuredText/markdown body (see <a class="reference external" href="https://github.com/TerosTechnology/teroshdl-documenter-demo">TerosHDL CLI examples</a>).</p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org">Sphinx</a> project/domain with cross-references (placeholder: <a class="reference external" href="https://github.com/Paebbels/sphinxcontrib-vhdldomain/">Paebbels/sphinxcontrib-vhdldomain</a>).</p></li>
+<li><p>Diagrams:</p>
+<ul>
+<li><p>For Sphinx (see <a class="reference internal" href="#api-project-docgen-sphinx-diagrams"><span class="std std-ref">Integration with Sphinx » Diagrams</span></a>).</p></li>
+<li><p>For asciidoctor (see <a class="reference external" href="https://asciidoctor.org/docs/asciidoctor-diagram/">Asciidoctor Diagram</a>).</p></li>
+</ul>
+</li>
+</ul>
+<section id="integration-with-sphinx">
+<span id="api-project-docgen-sphinx"></span><h2>Integration with Sphinx<a class="headerlink" href="#integration-with-sphinx" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://www.sphinx-doc.org">Sphinx</a> is the <em>de facto</em> static site generator (SSG) used for building documentation of
+Python projects.
+It was originally created for <a class="reference external" href="https://docs.python.org/">the Python documentation</a>, and it has support for
+documenting software projects in several languages.
+Since many open source EDA projects and CLIs are written in Python, Sphinx is probably the most used SSG.
+It’s used by SymbiFlow, GHDL, VUnit, pyVHDLModel/pyVHDLParser, cocotb, TerosHDL, Boolector, edalize/fusesoc,
+Wishbone (FOSSi), SpinalHDL, tsfpga…</p>
+<p>Additional features can be added to Sphinx through <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/index.html">extensions</a>.
+For instance, <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/intersphinx.html">intersphinx</a> allows
+cross-referencing content across sites, as if they were local references.
+That is really handy for building knowledge as a community.</p>
+<p>The default plaintext markup language used by Sphinx is <a class="reference external" href="https://docutils.sourceforge.io/rst.html">reStructuredText</a>.
+Other markup languages, such as Markdown, can be imported through extensions, however, not all cross-reference features
+are available when using those.</p>
+<p>Overall, there are four approaches for adding content with custom processing to a site built with Sphinx:</p>
+<ul class="simple">
+<li><p>Execute before Sphinx:</p>
+<ul>
+<li><p><cite>html_static_path</cite>: content in the <em>static</em> paths is copied to the output’s <cite>_static</cite> directory, overriding existing
+sources with the same name.
+This is typically used for adding images and/or customising the CSS.</p></li>
+<li><p><cite>html_extra_path</cite>: content in <em>extra</em> paths is copied as-is to the output directory, overriding existing sources
+with the same name.
+This can be used for adding static content generated with a different generator.</p></li>
+</ul>
+</li>
+<li><p>Built into Sphinx:</p>
+<ul>
+<li><p><cite>exec</cite>: a generic directive (such as the ones proposed in <a class="reference external" href="https://stackoverflow.com/a/18143318">stackoverflow.com/a/18143318</a>)
+allows executing arbitrary Python code which generates reStructuredText output through <cite>print</cite> statements.</p></li>
+<li><p>Ad-hoc directive: as explained in <a class="reference external" href="https://www.sphinx-doc.org/en/master/extdev/index.html#dev-extensions">Developing extensions for Sphinx</a>,
+there are several objects whose API can be used when writing extensions: Application, Environment, Builder and Config.
+Those allow fine-grained integration into Sphinx’s internals, potentially bypassing the reStructuredText parsing
+layer.
+This is the end-goal for tightly integrated and customised functionality.</p></li>
+</ul>
+</li>
+</ul>
+<section id="exec-directive">
+<span id="api-project-docgen-sphinx-exec"></span><h3><em>exec</em> directive<a class="headerlink" href="#exec-directive" title="Permalink to this headline">¶</a></h3>
+<p>The generic <cite>exec</cite> extension (see <a class="reference external" href="https://github.com/umarcor/osvb/blob/main/docs/exec.py">docs/exec.py</a>) is based on <a class="reference external" href="https://stackoverflow.com/a/18143318">stackoverflow.com/a/18143318</a>.
+It allows executing arbitrary Python code which prints reStructuredText output.</p>
+<p>Setup is done by adding <cite>exec</cite> to the <cite>extensions</cite> variable of the <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>.
+Depending on the location of <cite>exec.py</cite>, it might be necessary to add <code class="docutils literal notranslate"><span class="pre">sys.path.insert(0,</span> <span class="pre">abspath(&quot;.&quot;))</span></code>.
+Other than that, users (developers of the arbitrary Python code) don’t need to know internals of Sphinx, but just print
+regular reStructuredText statements.</p>
+<p>However, a main caveat of the current implementation is that Sphinx will never fail.
+That is, even if the arbitrary code fails, the Sphinx build is reported as successful.
+That’s because errors are shown as an admonition instead of making the build fail.
+As a result, manual inspection of the output is required (desirable).</p>
+<p>Moreover, currently no context is passed to the Python code.
+Therefore, it is not possible to know where it belongs in the hierarchy of the document.
+This is a limitation for generating headers and other context dependent statements.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Should you want to help improve the implementation of this directive, <a class="reference external" href="https://github.com/umarcor/osvb/issues/new">let us know</a>!</p>
+</div>
+</section>
+<section id="lists-and-tables">
+<h3>Lists and tables<a class="headerlink" href="#lists-and-tables" title="Permalink to this headline">¶</a></h3>
+<p>This section showcases a naive approach for documenting VHDL design units using pyGHDL.dom.
+It is based on <a class="reference internal" href="#api-project-docgen-sphinx-exec"><span class="std std-ref">exec directive</span></a> and the <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> module of <a class="reference internal" href="pyVHDLModelUtils.html#api-project-pyvhdlmodelutils"><span class="std std-ref">pyVHDLModelUtils</span></a>.</p>
+<p>First, <cite>initDesign</cite> needs to be executed, in order to provide the lists of sources and VHDL library names.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently, there is no specific JSON/YAML format supported for this task.
+Find work in progress in section <a class="reference internal" href="../core.html#api-core"><span class="std std-ref">Core</span></a>.</p>
+</div>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 1 </span><span class="caption-text">Loading design sources.</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">exec</span><span class="p">::</span>
+   <span class="kn">from</span> <span class="nn">pyVHDLModelUtils.sphinx</span> <span class="kn">import</span> <span class="n">initDesign</span>
+   <span class="n">initDesign</span><span class="p">(</span>
+     <span class="s1">&#39;..&#39;</span><span class="p">,</span>
+     <span class="n">AXI4</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;AXI4Stream/src/*.vhd&quot;</span><span class="p">],</span>
+     <span class="n">fpconv</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;fpconv/*.vhd&quot;</span><span class="p">]</span>
+   <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The output of <em>initDesign</em> is a NOTE containing the result of parsing the sources with pyGHDL.dom.
+If a failure was produced, an admonition of type ERROR is shown instead.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Output of initDesign:</p>
+<ul class="simple">
+<li><p>AXI4</p>
+<ul>
+<li><p>AXI4Stream/src/axis_buffer.vhd</p></li>
+<li><p>AXI4Stream/src/fifo.vhd</p>
+<ul>
+<li><p>[NOT IMPLEMENTED] Array_Subtype_Definition</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>fpconv</p>
+<ul>
+<li><p>fpconv/tb.vhd</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Then, <cite>printDocumentationOf</cite> allows generating the documentation of libraries and/or design units.
+By default, the content is shown where the directive was called.
+In case of failure, an admonition of type ERROR is shown.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 2 </span><span class="caption-text">Printing a summary of the content.</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">exec</span><span class="p">::</span>
+   <span class="kn">from</span> <span class="nn">pyVHDLModelUtils.sphinx</span> <span class="kn">import</span> <span class="n">printDocumentationOf</span>
+   <span class="n">printDocumentationOf</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Design content:</p>
+<ul class="simple">
+<li><p>Library <em>AXI4</em> [2 entities]</p>
+<ul>
+<li><p>Entity: <em>axis_buffer</em></p>
+<ul>
+<li><p>Architecture: <em>arch</em></p></li>
+</ul>
+</li>
+<li><p>Entity: <em>fifo</em></p>
+<ul>
+<li><p>Architecture: <em>arch</em></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>At the moment, two different styles are supported for printing the documentation of entities.</p>
+<p>List style:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 3 </span><span class="caption-text">Printing the documentation of a unit (style ‘rst:list’).</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">exec</span><span class="p">::</span>
+   <span class="kn">from</span> <span class="nn">pyVHDLModelUtils.sphinx</span> <span class="kn">import</span> <span class="n">printDocumentationOf</span>
+   <span class="n">printDocumentationOf</span><span class="p">([</span><span class="s2">&quot;AXI4.axis_buffer&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<p>Entity <em>axis_buffer</em> from Library <em>AXI4</em>:</p>
+<ul>
+<li><p>Generics:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><em>data_width</em> : <code class="docutils literal notranslate"><span class="pre">integer</span></code> := <code class="docutils literal notranslate"><span class="pre">32</span></code></p></li>
+<li><p><em>fifo_depth</em> : <code class="docutils literal notranslate"><span class="pre">integer</span></code> := <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Ports:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><em>s_axis_clk</em> : in <code class="docutils literal notranslate"><span class="pre">std_logic</span></code></p></li>
+<li><p><em>s_axis_rstn</em> : in <code class="docutils literal notranslate"><span class="pre">std_logic</span></code></p></li>
+<li><p><em>s_axis_rdy</em> : out <code class="docutils literal notranslate"><span class="pre">std_logic</span></code></p></li>
+<li><p><em>s_axis_data</em> : in <code class="docutils literal notranslate"><span class="pre">std_logic_vector(data_width</span> <span class="pre">-</span> <span class="pre">1</span> <span class="pre">downto</span> <span class="pre">0)</span></code></p></li>
+<li><p><em>s_axis_valid</em> : in <code class="docutils literal notranslate"><span class="pre">std_logic</span></code></p></li>
+<li><p><em>s_axis_strb</em> : in <code class="docutils literal notranslate"><span class="pre">std_logic_vector((data_width</span> <span class="pre">/</span> <span class="pre">8)</span> <span class="pre">-</span> <span class="pre">1</span> <span class="pre">downto</span> <span class="pre">0)</span></code></p></li>
+<li><p><em>s_axis_last</em> : in <code class="docutils literal notranslate"><span class="pre">std_logic</span></code></p></li>
+<li><p><em>m_axis_clk</em> : in <code class="docutils literal notranslate"><span class="pre">std_logic</span></code></p></li>
+<li><p><em>m_axis_rstn</em> : in <code class="docutils literal notranslate"><span class="pre">std_logic</span></code></p></li>
+<li><p><em>m_axis_valid</em> : out <code class="docutils literal notranslate"><span class="pre">std_logic</span></code></p></li>
+<li><p><em>m_axis_data</em> : out <code class="docutils literal notranslate"><span class="pre">std_logic_vector(data_width</span> <span class="pre">-</span> <span class="pre">1</span> <span class="pre">downto</span> <span class="pre">0)</span></code></p></li>
+<li><p><em>m_axis_rdy</em> : in <code class="docutils literal notranslate"><span class="pre">std_logic</span></code></p></li>
+<li><p><em>m_axis_strb</em> : out <code class="docutils literal notranslate"><span class="pre">std_logic_vector((data_width</span> <span class="pre">/</span> <span class="pre">8)</span> <span class="pre">-</span> <span class="pre">1</span> <span class="pre">downto</span> <span class="pre">0)</span></code></p></li>
+<li><p><em>m_axis_last</em> : out <code class="docutils literal notranslate"><span class="pre">std_logic</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Architectures:</p>
+<ul class="simple">
+<li><p><em>arch</em></p></li>
+</ul>
+</li>
+</ul>
+<p>Table style:</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 4 </span><span class="caption-text">Printing the documentation of a unit (style ‘rst:table’).</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">exec</span><span class="p">::</span>
+   <span class="kn">from</span> <span class="nn">pyVHDLModelUtils.sphinx</span> <span class="kn">import</span> <span class="n">printDocumentationOf</span>
+   <span class="n">printDocumentationOf</span><span class="p">(</span>
+     <span class="p">[</span><span class="s2">&quot;AXI4.axis_buffer&quot;</span><span class="p">],</span>
+     <span class="s1">&#39;rst:table&#39;</span>
+   <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<table class="docutils align-center" id="id5">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">AXI4.axis_buffer Generics</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 39%" />
+<col style="width: 33%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Identifiers</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data_width</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">32</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>fifo_depth</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-center" id="id6">
+<caption><span class="caption-number">Table 2 </span><span class="caption-text">AXI4.axis_buffer Ports</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 8%" />
+<col style="width: 65%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Identifiers</p></th>
+<th class="head"><p>Mode</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>s_axis_clk</p></td>
+<td><p>in</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std_logic</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>s_axis_rstn</p></td>
+<td><p>in</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std_logic</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>s_axis_rdy</p></td>
+<td><p>out</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std_logic</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>s_axis_data</p></td>
+<td><p>in</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std_logic_vector(data_width</span> <span class="pre">-</span> <span class="pre">1</span> <span class="pre">downto</span> <span class="pre">0)</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>s_axis_valid</p></td>
+<td><p>in</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std_logic</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>s_axis_strb</p></td>
+<td><p>in</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std_logic_vector((data_width</span> <span class="pre">/</span> <span class="pre">8)</span> <span class="pre">-</span> <span class="pre">1</span> <span class="pre">downto</span> <span class="pre">0)</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>s_axis_last</p></td>
+<td><p>in</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std_logic</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>m_axis_clk</p></td>
+<td><p>in</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std_logic</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>m_axis_rstn</p></td>
+<td><p>in</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std_logic</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>m_axis_valid</p></td>
+<td><p>out</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std_logic</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>m_axis_data</p></td>
+<td><p>out</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std_logic_vector(data_width</span> <span class="pre">-</span> <span class="pre">1</span> <span class="pre">downto</span> <span class="pre">0)</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>m_axis_rdy</p></td>
+<td><p>in</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std_logic</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>m_axis_strb</p></td>
+<td><p>out</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std_logic_vector((data_width</span> <span class="pre">/</span> <span class="pre">8)</span> <span class="pre">-</span> <span class="pre">1</span> <span class="pre">downto</span> <span class="pre">0)</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>m_axis_last</p></td>
+<td><p>out</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std_logic</span></code></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-center" id="id7">
+<caption><span class="caption-number">Table 3 </span><span class="caption-text">AXI4.axis_buffer Architectures</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Identifier</p></th>
+<th class="head"><p>Number of statements</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>arch</p></td>
+<td><p>11</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a demo for showcasing the capabilities of pyGHDL.dom and pyVHDLModel.
+Should you want to help improve the implementation for it to be more usable in practice, <a class="reference external" href="https://github.com/umarcor/osvb/issues/new">let us know</a>!</p>
+</div>
+</section>
+<section id="vhdl-domain">
+<h3>VHDL Domain<a class="headerlink" href="#vhdl-domain" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/Paebbels/sphinxcontrib-vhdldomain">sphinxcontrib-vhdldomain</a> is work in progress for adding a VHDL
+language domain to Sphinx.
+That is, a set of nestable directives resembling the architecture of pyVHDLModel.
+The purpose is twofold:</p>
+<ul class="simple">
+<li><p>Allow a better integration of the content into Sphinx, rather than generating reStructuredText output from arbitrary
+Python functions.</p></li>
+<li><p>Allow users to specify a pyVHDLModel project by handwriting directives in reStructuredText sources, by either pointing
+to individual files or explicitly describing all the items.</p></li>
+</ul>
+<p>See <a class="reference external" href="https://github.com/Paebbels/sphinxcontrib-vhdldomain/issues/4">Paebbels/sphinxcontrib-vhdldomain#4</a>.</p>
+<p>There is also <a class="reference external" href="https://github.com/CESNET/sphinx-vhdl">CESNET/sphinx-vhdl</a>, which uses a custom basic parser (<a class="reference external" href="https://github.com/CESNET/sphinx-vhdl/blob/main/src/sphinxvhdl/autodoc.py">CESNET/sphinx-vhdl: src/sphinxvhdl/autodoc.py</a>)
+and multiple custom Sphinx directives (<a class="reference external" href="https://github.com/CESNET/sphinx-vhdl/blob/main/src/sphinxvhdl/vhdl.py">CESNET/sphinx-vhdl: src/sphinxvhdl/vhdl.py</a>).</p>
+</section>
+<section id="diagrams">
+<span id="api-project-docgen-sphinx-diagrams"></span><h3>Diagrams<a class="headerlink" href="#diagrams" title="Permalink to this headline">¶</a></h3>
+<p>Both GHDL and Yosys allow generating diagrams of synthesised designs.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ghdl</span> <span class="pre">synth</span> <span class="pre">--out=dot</span></code> generates a <a class="reference external" href="https://graphviz.org/">Graphviz</a> DOT diagram of the netlist AST.</p></li>
+<li><p><a class="reference external" href="https://github.com/ghdl/ghdl-yosys-plugin">ghdl-yosys-plugin</a> allows using GHDL as a frontend for Yosys.</p>
+<ul>
+<li><p>As explained in <a class="reference external" href="https://ghdl.github.io/ghdl/using/Synthesis.html#synth-plugin" title="(in GHDL v2.0)"><span class="xref std std-ref">ghdl.github.io/ghdl/synthesis » Yosys plugin</span></a>, ghdl-yosys-plugin and Yosys
+allow converting VHDL to EDIT, SMT, BTOR2, FIRRTL, etc.</p></li>
+</ul>
+</li>
+<li><p>Yosys’s <a class="reference external" href="https://yosyshq.net/yosys/cmd_show.html">show</a> command allows generating a Graphviz DOT diagram and
+compiling it to a graphics file (say SVG).</p>
+<ul>
+<li><p>Optionally, command <a class="reference external" href="https://yosyshq.net/yosys/cmd_aigmap.html">aigmap</a> can map the logic to and/nand gates only,
+before generating the diagram.</p></li>
+<li><p>Alternatively, <a class="reference external" href="https://github.com/nturley/netlistsvg">netlistsvg</a> allows generating SVG schematics from Yosys’
+JSON netlist output.</p></li>
+</ul>
+</li>
+</ul>
+<p>By combining those tools, diagrams of a given VHDL design can be generated as follows:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>~# yosys -p <span class="s1">&#39;ghdl --std=08 design.vhd -e primary_unit secondary_unit; prep; write_json netlist.json&#39;</span>
+~# netlistsvg netlist.json -o netlist.svg
+~# convert netlist.svg netlist.png
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>There is an Sphinx extension named <a class="reference external" href="https://github.com/SymbiFlow/sphinxcontrib-hdl-diagrams">sphinxcontrib-hdl-diagrams</a>,
+which wraps Yosys and (optionally) netlistsvg in a directive.
+That allows including diagrams in the docs without manually calling yosys and netlistsvg.
+For instance:</p>
+<div class="highlight-restructuredtext notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">hdl-diagram</span><span class="p">::</span> file.v
+   <span class="nc">:type:</span> netlistsvg
+   <span class="nc">:module:</span> name
+   <span class="nc">:flatten:</span>
+</pre></div>
+</div>
+<p>However, since sphinxcontrib-hdl-diagrams depends on combining the WASM version of Yosys and netlistsvg (which is
+JavaScript), it does not support VHDL yet.
+There is work in progress for using the extension with “natively” installed tools, as well as supporting VHDL and
+mixed-language designs.
+See
+<a class="reference external" href="https://github.com/SymbiFlow/sphinxcontrib-hdl-diagrams/issues/65">SymbiFlow/sphinxcontrib-hdl-diagrams#65</a>,
+<a class="reference external" href="https://github.com/SymbiFlow/sphinxcontrib-hdl-diagrams/pull/72">SymbiFlow/sphinxcontrib-hdl-diagrams#72</a>
+and <a class="reference external" href="https://github.com/SymbiFlow/sphinxcontrib-hdl-diagrams/pull/73">SymbiFlow/sphinxcontrib-hdl-diagrams#73</a>.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="OSVDE.html" class="btn btn-neutral float-left" title="Open Source VHDL Design Explorer (OSVDE)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../tool.html" class="btn btn-neutral float-right" title="Tool" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Unai Martinez-Corral and contributors.</p>
+  </div>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/buildthedocs/sphinx.theme">theme</a>
+    provided by <a href="https://buildthedocs.github.io">Build the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SISO AXI4 Stream &mdash; Open Source Verification Bundle latest documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/osvb.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Fixed-point conversion" href="../notebook/fpconv.html" />
+    <link rel="prev" title="Simple Flip-Flop" href="sff.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html">
+            <img src="../_static/osvb_banner_white.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/frameworks.html">Frameworks and Methodologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/sim.html">Simulators | Compilers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/cosim.html">Co-simulation</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://edaa-org.github.io/ConceptualModel.html">EDA² Conceptual Model ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../apis/core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apis/project.html">Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apis/tool.html">Tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apis/runner.html">Runner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apis/logging.html">Logging</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="sff.html">Simple Flip-Flop</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SISO AXI4 Stream</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#vunit-s-array-axis-vcs-example">VUnit’s array_axis_vcs example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#vunit">VUnit</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#with-pycapi">With pyCAPI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#osvvm-tbstream">OSVVM TBStream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#osvvm-pro-files">OSVVM <code class="docutils literal notranslate"><span class="pre">.pro</span></code> files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ghdl-s-vendor-scripts">GHDL’s vendor scripts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">VUnit</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#with-pyedaa-projectmodel">With pyEDAA.ProjectModel</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notebook</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/fpconv.html">Fixed-point conversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/sigrok.html">sigrok-cli | Pulseview</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Open Source Verification Bundle</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+        
+          
+            <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>SISO AXI4 Stream</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/umarcor/osvb/blob/main/doc/egs/axi4stream.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="siso-axi4-stream">
+<span id="examples-axi4stream"></span><h1>SISO AXI4 Stream<a class="headerlink" href="#siso-axi4-stream" title="Permalink to this headline">¶</a></h1>
+<p>The purpose of this example is to showcase a testing setup for a core with Single Input Single Output (SISO) AXI4 Stream
+interfaces.
+This is typically found in streaming Digital Signal Processing (DSP) applications.
+For illustration purposes, the same UUT is tested using verification components and run scripts from several frameworks.</p>
+<p><a class="reference external" href="https://github.com/umarcor/osvb/blob/main/AXI4Stream/src">AXI4Stream/src</a> contains the VHDL sources of a SISO AXI4 Stream loopback buffer.
+Those sources are the same as the ones in the <a class="reference external" href="https://github.com/VUnit/vunit/tree/master/examples/vhdl/array_axis_vcs">array_axis_vcs</a>
+example of VUnit’s repo.</p>
+<section id="vunit-s-array-axis-vcs-example">
+<h2>VUnit’s array_axis_vcs example<a class="headerlink" href="#vunit-s-array-axis-vcs-example" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/umarcor/osvb/blob/main/AXI4Stream/test/vunit/*.vhd">AXI4Stream/test/vunit/*.vhd</a> are regular VUnit testbenches using VUnit’s
+Verification Components (VCs), similar to the ones found in <a class="reference external" href="https://github.com/VUnit/vunit/tree/master/examples/vhdl/array_axis_vcs">VUnit/vunit: examples/vhdl/array_axis_vcs</a>.
+However, several variants were added here, for testing performance with different setups.</p>
+<section id="vunit">
+<h3>VUnit<a class="headerlink" href="#vunit" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/umarcor/osvb/blob/main/AXI4Stream/test/vunit/run.py">AXI4Stream/test/vunit/run.py</a> is a regular VUnit script based on
+<a class="reference external" href="https://github.com/VUnit/vunit/tree/master/examples/vhdl/array_axis_vcs/run.py">VUnit/vunit: examples/vhdl/array_axis_vcs/run.py</a>.
+It searches the testbenches in the same directory, and executes the tests as usual in a VUnit run.</p>
+<p>This is <code class="docutils literal notranslate"><span class="pre">test_AXI4Stream_VUnit</span></code> in CI.</p>
+<section id="with-pycapi">
+<h4>With pyCAPI<a class="headerlink" href="#with-pycapi" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://github.com/umarcor/osvb/blob/main/AXI4Stream/test/vunit/run_capi.py">AXI4Stream/test/vunit/run_capi.py</a> is a variant of the default script, which
+uses <a class="reference internal" href="../apis/core.html#api-core"><span class="std std-ref">Core</span></a> for retrieving the filesets.
+Testbenches are found and executed as usual.</p>
+<p>This is <code class="docutils literal notranslate"><span class="pre">test_AXI4Stream_VUnitCAPI</span></code> in CI.</p>
+</section>
+</section>
+</section>
+<section id="osvvm-tbstream">
+<h2>OSVVM TBStream<a class="headerlink" href="#osvvm-tbstream" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/umarcor/osvb/blob/main/AXI4Stream/test/osvvm">AXI4Stream/test/osvvm</a> contains VHDL sources based on OSVVM’s AXI4 Stream testbench
+example: <a class="reference external" href="https://github.com/OSVVM/AXI4/tree/master/AxiStream">OSVVM/AXI4: AxiStream</a>.</p>
+<section id="osvvm-pro-files">
+<h3>OSVVM <code class="docutils literal notranslate"><span class="pre">.pro</span></code> files<a class="headerlink" href="#osvvm-pro-files" title="Permalink to this headline">¶</a></h3>
+<p>OSVVM provides a compilation and execution infrastructure through files with extension <code class="docutils literal notranslate"><span class="pre">.pro</span></code>, which are in fact TCL
+scripts.
+Those scripts are used in the CI workflow of <a class="reference external" href="https://github.com/osvvm/OsvvmLibraries">osvvm/OsvvmLibraries</a>.</p>
+<p><a class="reference external" href="https://github.com/umarcor/osvb/blob/main/AXI4Stream/test/osvvm/run.pro">AXI4Stream/test/osvvm/run.pro</a> sources OSVVM’s scripts and uses the <code class="docutils literal notranslate"><span class="pre">analyze</span></code>
+<code class="docutils literal notranslate"><span class="pre">simulate</span></code> commands provided by those.</p>
+<p>This is <code class="docutils literal notranslate"><span class="pre">test_AXI4Stream_OSVVM_ProFiles</span></code> in CI.</p>
+</section>
+<section id="ghdl-s-vendor-scripts">
+<h3>GHDL’s vendor scripts<a class="headerlink" href="#ghdl-s-vendor-scripts" title="Permalink to this headline">¶</a></h3>
+<p>Maintainers of GHDL provide helper scripts to build vendor libraries, including Xilinx, Intel/Altera,… and OSVVM
+(see <a class="reference external" href="https://github.com/ghdl/ghdl/tree/master/scripts/vendors">ghdl/ghdl: scripts/vendors</a>).
+Currently, Bash and PowerShell variants of the scripts are provided.
+Those scripts are used in the CI workflow of <a class="reference external" href="https://github.com/ghdl/extended-tests">ghdl/extended-tests</a>.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>GHDL’s vendor scripts are typically used along with custom simulation scripts or with VUnit.
+Is it possible to use them for compilation and OSVVM’s <code class="docutils literal notranslate"><span class="pre">.pro</span></code> files for running the simulations?</p>
+</div>
+</section>
+<section id="id1">
+<h3>VUnit<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Since VUnit allows managing the compilation of VHDL sources or adding externally built libraries, there are multiple
+possibilities for combining the OSVVM methodology and the VUnit framework.
+Ten different use cases are showcased in this repository, nine of which are summarised in the following table:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 32%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Order \ Build procedure</p></th>
+<th class="head"><p>RunScript</p></th>
+<th class="head"><p>ProFiles</p></th>
+<th class="head"><p>VendorScripts</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Without VUnit’s VCs</p></td>
+<td><p><a class="reference external" href="https://github.com/umarcor/osvb/blob/main/AXI4Stream/test/osvvm/run.py">run.py</a></p></td>
+<td><p><a class="reference external" href="https://github.com/umarcor/osvb/blob/main/AXI4Stream/test/osvvm/run_ext_pro.py">run_ext_pro.py</a></p></td>
+<td><p><a class="reference external" href="https://github.com/umarcor/osvb/blob/main/AXI4Stream/test/osvvm/run_ext_ghdl.py">run_ext_ghdl.py</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>With VUnit’s VCs Before</p></td>
+<td><p><a class="reference external" href="https://github.com/umarcor/osvb/blob/main/AXI4Stream/test/osvvm/run_wvcsb.py">run_wvcsb.py</a></p></td>
+<td><p><a class="reference external" href="https://github.com/umarcor/osvb/blob/main/AXI4Stream/test/osvvm/run_ext_pro_wvcsb.py">run_ext_pro_wvcsb.py</a></p></td>
+<td><p><a class="reference external" href="https://github.com/umarcor/osvb/blob/main/AXI4Stream/test/osvvm/run_ext_ghdl_wvcsb.py">run_ext_ghdl_wvcsb.py</a></p></td>
+</tr>
+<tr class="row-even"><td><p>With VUnit’s VCs After</p></td>
+<td><p><a class="reference external" href="https://github.com/umarcor/osvb/blob/main/AXI4Stream/test/osvvm/run_wvcsa.py">run_wvcsa.py</a></p></td>
+<td><p><a class="reference external" href="https://github.com/umarcor/osvb/blob/main/AXI4Stream/test/osvvm/run_ext_pro_wvcsa.py">run_ext_pro_wvcsa.py</a></p></td>
+<td><p><a class="reference external" href="https://github.com/umarcor/osvb/blob/main/AXI4Stream/test/osvvm/run_ext_ghdl_wvcsa.py">run_ext_ghdl_wvcsa.py</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">RunScript</span></code>: compiling sources through VUnit.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ProFiles</span></code>: using OSVVM’s <code class="docutils literal notranslate"><span class="pre">.pro</span></code> files for building OSVVMLibraries, and then adding them as external to VUnit.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VendorScripts</span></code>: using GHDL’s vendor scripts for building OSVVMLibraries, and then adding them as external to
+VUnit.</p></li>
+</ul>
+<p>and:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Before</span></code>: VUnit’s <code class="docutils literal notranslate"><span class="pre">add_verification_components</span></code> (including the builtin OSVVM) is used before adding
+non-builtin OSVVMLibraries.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">After</span></code>: non-builtin OSVVM and/or OSVVMLibraries are added before using VUnit’s
+<code class="docutils literal notranslate"><span class="pre">add_verification_components</span></code>.</p></li>
+</ul>
+<p>Moreover, <a class="reference external" href="https://github.com/umarcor/osvb/blob/main/AXI4Stream/test/osvvm/run_wvcsans.py">run_wvcsans.py</a> is equivalent to <code class="docutils literal notranslate"><span class="pre">run_wvcsb.py</span></code>, but the
+resources are added in a different order.</p>
+<p>The corresponding tests in CI are the following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">test_AXI4Stream_OSVVM_VUnit</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_AXI4Stream_OSVVM_VUnit_WithVCsBefore</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_AXI4Stream_OSVVM_VUnit_WithVCsAfter</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_AXI4Stream_OSVVM_VUnit_WithVCsAfterNoSkip</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_AXI4Stream_OSVVM_VUnit_external_ProFiles</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_AXI4Stream_OSVVM_VUnit_external_ProFiles_WithVCsBefore</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_AXI4Stream_OSVVM_VUnit_external_ProFiles_WithVCsAfter</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_AXI4Stream_OSVVM_VUnit_external_VendorScripts</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_AXI4Stream_OSVVM_VUnit_external_VendorScripts_WithVCsBefore</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_AXI4Stream_OSVVM_VUnit_external_VendorScripts_WithVCsAfter</span></code></p></li>
+</ul>
+<section id="with-pyedaa-projectmodel">
+<h4>With pyEDAA.ProjectModel<a class="headerlink" href="#with-pyedaa-projectmodel" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://edaa-org.github.io/ConceptualModel.html#edaa-concept" title="(in Electronic Design Automation Abstraction vlatest)"><span>Conceptual Model</span></a></p>
+<p><em>TBC</em></p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Probably, use GHDL’s <a class="reference external" href="https://github.com/ghdl/ghdl/blob/master/scripts/vendors/compile-osvvm.ps1">compile-osvvm.ps1</a>
+as a reference or for generating <code class="docutils literal notranslate"><span class="pre">*.core</span></code> files automatically.</p>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sff.html" class="btn btn-neutral float-left" title="Simple Flip-Flop" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../notebook/fpconv.html" class="btn btn-neutral float-right" title="Fixed-point conversion" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Unai Martinez-Corral and contributors.</p>
+  </div>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/buildthedocs/sphinx.theme">theme</a>
+    provided by <a href="https://buildthedocs.github.io">Build the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
